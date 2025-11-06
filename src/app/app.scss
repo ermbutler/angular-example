@@ -1,13 +1,28 @@
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
 .projects {
     text-align: center;
     margin-top: 20px;
-    
     padding: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+
+    &::after {
+        content: "";
+        flex: auto; /* Or set a fixed width equal to your items */
+    }
+    
 }
+
+
 
 .project-item {
     box-sizing: border-box;
@@ -15,6 +30,31 @@
     font-size: 18px;
     list-style-type: none;
     width: 30%;
+    margin-right: 30px;
+}
+
+.filters-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    div:first-child {
+        padding-right: 30px;
+        border-right: 1px solid #ccc;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .projects {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .project-item {
+        width: 100%;
+    }
+    
 }
 
 .even {
@@ -48,4 +88,41 @@
         cursor: not-allowed;
     }
     
+}
+
+.search-label {
+    font-weight: bold;
+    margin-right: 10px;
+}   
+
+.search-container {
+    margin: 20px 0;
+    input {
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+         width: calc(100% - 100px);
+        min-width: 120px;
+        max-width: 250px;
+       
+    }
+}
+
+.clear-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+h1 {}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    color: #666;
 }

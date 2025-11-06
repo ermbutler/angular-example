@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { Project } from './models/project.model';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,13 @@ export class App {
   protected readonly title = signal('MyAngularApp');
   isDisabled = true;
 
+  year: number = new Date().getFullYear();
+
   myProjectsOG: Project[] = [ {
       company: 'Company A',
       role: 'Developer',
       description: 'Details of Job 1',
-      imageSrc: 'https://via.placeholder.com/150',
+      imageSrc: '/apple-touch-icon.png',
       link: 'https://example.com',
       yearStarted: 2020,
       yearEnded: 2022,
@@ -28,7 +31,7 @@ export class App {
       company: 'Company B',
       role: 'Designer',
       description: 'Details of Job 2',
-      imageSrc: 'https://via.placeholder.com/150',
+      imageSrc: '/apple-touch-icon.png',
       link: 'https://example.com',
       yearStarted: 2020,
       yearEnded: 2022,
@@ -38,7 +41,7 @@ export class App {
       company: 'Company C',
       role: 'Manager',
       description: 'Details of Job 3',
-      imageSrc: 'https://via.placeholder.com/150',
+      imageSrc: '/apple-touch-icon.png',
       link: 'https://example.com',
       yearStarted: 2020,
       yearEnded: 2022,
@@ -48,27 +51,21 @@ export class App {
 
   myProjects: Project[] = [...this.myProjectsOG];
 
-  sortByRole() {
-    this.myProjects.sort((a, b) => a.role.localeCompare(b.role));
-  }
-  sortByCompany() {
-    this.myProjects.sort((a, b) => a.company.localeCompare(b.company));
-  }
-  reverseSortByCompany() {
-    this.myProjects.sort((a, b) => b.company.localeCompare(a.company));
-  }
-  reverseSortByRole() {
-    this.myProjects.sort((a, b) => b.role.localeCompare(a.role));
+  resetFilter() {
+    this.myProjects = [...this.myProjectsOG];
   }
 
-  sortByYearStarted() {
-    this.myProjects.sort((a, b) => a.yearStarted - b.yearStarted);
-  }
-  reverseSortByYearStarted() {
-    this.myProjects.sort((a, b) => b.yearStarted - a.yearStarted);
-  }
+  filterDisplayOnSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const searchTerm = input.value.toLowerCase();
 
-
+    this.myProjects = this.myProjectsOG.filter(project =>
+      project.company.toLowerCase().includes(searchTerm) ||
+      project.role.toLowerCase().includes(searchTerm) ||
+      project.description.toLowerCase().includes(searchTerm) ||
+      project.skills.some((skill: string) => skill.toLowerCase().includes(searchTerm))
+    );
+  }
 
   listSkills() {
     const skillsSet = new Set<string>();
@@ -81,7 +78,8 @@ export class App {
   activeSkills: string[] = [];
 
   showActiveSkillsProjects() {
-    return this.myProjectsOG.filter((project: Project) => {
+    this.myProjects = [...this.myProjectsOG];
+    const filtered = this.myProjects.filter((project: Project) => {
       console.log('Checking project:', project.company);
 
       for(let s of this.activeSkills) {
@@ -92,6 +90,11 @@ export class App {
       }
       return false;
     });
+
+    if(filtered.length > 0) {
+      return filtered;
+    }
+    return this.myProjects;
   }
 
   filterDisplayOnSkill(skill: string, event: Event) {
@@ -107,5 +110,12 @@ export class App {
     this.myProjects = this.showActiveSkillsProjects();
     
     
+  }
+
+  resetActiveSkills() {
+    
+    this.myProjects = [...this.myProjectsOG];
+    this.activeSkills = [];
+    this.showActiveSkillsProjects();
   }
 }

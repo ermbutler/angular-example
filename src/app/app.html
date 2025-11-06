@@ -1,4 +1,4 @@
-<div>
+<div class="app-container">
   <!-- <input type="text" [disabled]="isDisabled" />
 
   <input id="myFileInput" type="file" accept="image/*;capture=camera">
@@ -9,14 +9,24 @@
 
 
   <h1>My Portfolio</h1>
-  <div>
-    <h2>Find by Skills</h2>
-    <ul>
+  <div class="filters-container">
+    <div class="skills-container">
+      <label class="search-label">Show skill: </label>
       <a class="skill-pill" [class.active]="activeSkills.includes(skill)" *ngFor="let skill of skills" (click)="filterDisplayOnSkill(skill, $event)">
         {{ skill }}
       </a>
-    </ul>
+      <button class="clear-button" (click)="resetActiveSkills()" [disabled]="activeSkills.length === 0">Clear</button>
+    </div>
+    <div class="search-container">
+    <label for="searchInput" class="search-label">Search:</label>
+    <input id="searchInput" type="text" (input)="filterDisplayOnSearch($event)" placeholder="Enter search term" />
   </div>
+  </div>
+
+
+  <p>
+    Displaying {{ myProjects.length }} of {{ myProjectsOG.length }} projects.
+  </p>
   <ul class="projects">
     <li class="project-item" *ngFor="let project of myProjects; index as i; let isOdd = odd; let isEven = even"
         [class.odd]="isOdd" [class.even]="isEven">
@@ -28,4 +38,8 @@
       <a [href]="project.link" target="_blank">View Project</a>
     </li>
   </ul> 
+
+  <div class="footer">
+    <p>© {{ year }} Erin Butler Web Dev</p>
+  </div>
 </div>
