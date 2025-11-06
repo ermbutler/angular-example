@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Project } from './models/project.model';
-import { filter } from 'rxjs';
+import { Project } from '../models/project.model';
+
 
 @Component({
   selector: 'app-root',
