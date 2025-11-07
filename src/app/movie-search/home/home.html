@@ -1,14 +1,14 @@
 
   <div class="search-container">
     <label for="searchInput" class="search-label">Search:</label>
-    <input id="searchInput" type="text" placeholder="Enter search term" (input)="searchTerm = $event.target.value"/>
+    <input id="searchInput" type="text" placeholder="Enter search term" [value]="searchTerm" (keyup)="debounceUpdateSearchTerm($event.target.value)"/>
   </div>
 
 
   <div *ngIf="myMovies && myMovies.length && myMovies.length > 0" class="results-count">
     <div class="d-flex align-items-center mb-3">
       <p>Displaying {{ myMovies.length }} of {{ searchResponse.totalResults }} movies found for search term <span class="highlight">{{searchTerm}}</span></p>
-      <button (click)="resetFilter()" class="clear-button">X Clear search</button>
+      <button (click)="updateSearchTerm('')" class="clear-button">X Clear search</button>
     </div>
     <ul class="movies">
       <app-movie-card *ngFor="let movie of myMovies" [movie]="movie"></app-movie-card>
