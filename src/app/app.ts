@@ -1,11 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Home } from './home/home';
+import { CommonModule } from '@angular/common';
+import { Home } from './movie-search/home/home';
+import { MovieCard } from './movie-search/movie-card/movie-card';
+import { MovieDetails } from './movie-search/movie-details/movie-details';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home],
+  imports: [RouterOutlet, CommonModule, Home, MovieCard, MovieDetails],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

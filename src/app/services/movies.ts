@@ -7,7 +7,7 @@ import { Movie } from '../../models/movies.model';
 @Injectable({
   providedIn: 'root',
 })
-export class Movies {
+export class MoviesService {
   public searchTerm: string = 'Aliens';
   private apiUrlBase: string = `${environment.apiUrl}/?apikey=${environment.apiKey}`;
 

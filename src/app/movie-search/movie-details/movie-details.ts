@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.scss',
+  
 })
 export class MovieDetails {
 

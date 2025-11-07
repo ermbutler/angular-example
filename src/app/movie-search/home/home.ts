@@ -1,46 +1,19 @@
 import { Component } from '@angular/core';
-import { Project } from '../../models/project.model';
+import { Project } from '../../../models/project.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
+  
 })
 export class Home {
-  myProjectsOG: Project[] = [ {
-      company: 'Company A',
-      role: 'Developer',
-      description: 'Details of Job 1',
-      imageSrc: '/apple-touch-icon.png',
-      link: 'https://example.com',
-      yearStarted: 2020,
-      yearEnded: 2022,
-      skills: ['Angular', 'TypeScript', 'CSS']
-    },
-    {
-      company: 'Company B',
-      role: 'Designer',
-      description: 'Details of Job 2',
-      imageSrc: '/apple-touch-icon.png',
-      link: 'https://example.com',
-      yearStarted: 2020,
-      yearEnded: 2022,
-      skills: ['Angular', 'TypeScript', 'CSS']
-    },
-    {
-      company: 'Company C',
-      role: 'Manager',
-      description: 'Details of Job 3',
-      imageSrc: '/apple-touch-icon.png',
-      link: 'https://example.com',
-      yearStarted: 2020,
-      yearEnded: 2022,
-      skills: ['Prototyping', 'Project Management', 'Solution Design']
-    }
-  ];
-
-  myProjects: Project[] = [...this.myProjectsOG];
+  myProjects: Project[] = [];
+  myProjectsOG: Project[] = [];
+  skills: string[] = [];
+  activeSkills: string[] = [];
 
   resetFilter() {
     this.myProjects = [...this.myProjectsOG];
@@ -65,8 +38,7 @@ export class Home {
     });
     return Array.from(skillsSet);
   }
-  skills: string[] = this.listSkills();
-  activeSkills: string[] = [];
+
 
   showActiveSkillsProjects() {
     this.myProjects = [...this.myProjectsOG];
@@ -108,5 +80,42 @@ export class Home {
     this.myProjects = [...this.myProjectsOG];
     this.activeSkills = [];
     this.showActiveSkillsProjects();
+  }
+
+  ngOnInit() {
+    this.myProjectsOG = [ {
+      company: 'Company A',
+      role: 'Developer',
+      description: 'Details of Job 1',
+      imageSrc: '/apple-touch-icon.png',
+      link: 'https://example.com',
+      yearStarted: 2020,
+      yearEnded: 2022,
+      skills: ['Angular', 'TypeScript', 'CSS']
+    },
+    {
+      company: 'Company B',
+      role: 'Designer',
+      description: 'Details of Job 2',
+      imageSrc: '/apple-touch-icon.png',
+      link: 'https://example.com',
+      yearStarted: 2020,
+      yearEnded: 2022,
+      skills: ['Angular', 'TypeScript', 'CSS']
+    },
+    {
+      company: 'Company C',
+      role: 'Manager',
+      description: 'Details of Job 3',
+      imageSrc: '/apple-touch-icon.png',
+      link: 'https://example.com',
+      yearStarted: 2020,
+      yearEnded: 2022,
+      skills: ['Prototyping', 'Project Management', 'Solution Design']
+    }
+  ];
+
+   this.myProjects = [...this.myProjectsOG];
+   this.skills = this.listSkills();
   }
 }
