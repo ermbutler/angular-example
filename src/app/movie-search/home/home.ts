@@ -16,6 +16,7 @@ export class Home {
   myMoviesOG: Movie[] = [];
   skills: string[] = [];
   activeSkills: string[] = [];
+  searchTerm: string = 'Aliens';
 
   resetFilter() {
     this.myMovies = [...this.myMoviesOG];
