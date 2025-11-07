@@ -115,8 +115,32 @@
     font-size: 14px;
     cursor: pointer;
 }
+body {
+    padding: 0;
+    margin:  0 !important;
+}
+header {
+    padding: 80px;
+    margin: 0;
+    background-color: #f5f5f5;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
 
-h1 {}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 1.5rem;
+}
+h2 {
+    font-size: 1.2rem;
+    color: #555;
+}
 
 .footer {
     text-align: center;
