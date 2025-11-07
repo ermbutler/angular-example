@@ -1,0 +1,29 @@
+.movie-card {
+    box-sizing: border-box;
+    padding: 10px 0;
+    font-size: 18px;
+    list-style-type: none;
+
+    &::after {
+        content: "";
+        flex: auto; /* Or set a fixed width equal to your items */
+    }
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .movie-card {
+        width: 100%;
+    }
+    
+}
+
+h2 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

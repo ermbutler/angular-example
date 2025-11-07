@@ -1,22 +1,13 @@
 
   <div class="search-container">
     <label for="searchInput" class="search-label">Search:</label>
-    <input id="searchInput" type="text" (input)="filterDisplayOnSearch($event)" placeholder="Enter search term" />
+    <input id="searchInput" type="text" (input)="filterDisplayOnSearch($event)" placeholder="Enter search term" value="Aliens"/>
   </div>
 
 
-  <div *ngIf="myProjects.length > 0" class="results-count">
-    <p>Displaying {{ myProjects.length }} of {{ myProjectsOG.length }} movies.</p>
-    
-    <ul class="projects">
-      <li class="project-item" *ngFor="let project of myProjects; let isOdd = odd; let isEven = even"
-          [class.odd]="isOdd" [class.even]="isEven">
-        <h2>{{ project.company }}</h2>
-        <h3>My role: {{ project.role }}</h3>
-        <img [src]="project.imageSrc" alt="{{ project.company }} Image" width="200" />
-        
-        <p>{{ project.description }}</p>
-        <a [href]="project.link" target="_blank">View Project</a>
-      </li>
+  <div *ngIf="myMovies && myMovies.length && myMovies.length > 0" class="results-count">
+    <p>Displaying {{ myMovies?.length }} of {{ myMoviesOG?.length }} movies.</p>
+    <ul class="movies">
+      <app-movie-card *ngFor="let movie of myMovies" [movie]="movie"></app-movie-card>
     </ul>
   </div>
